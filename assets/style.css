@@ -256,6 +256,7 @@ textarea {
   border-radius: 10px;
   padding: 20px;
   font-family: "Roboto", system-ui;
+  text-align: center;
 }
 
 textarea:focus {
@@ -281,6 +282,12 @@ textarea:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+}
+
+.text_modify_button:hover {
+  color: black;
+  background-color: white;
 }
 
 @media only screen and (max-width: 767px) {
