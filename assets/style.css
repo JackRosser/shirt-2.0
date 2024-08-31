@@ -144,6 +144,8 @@ li {
 li:hover {
   color: black;
   background-color: gray;
+  height: 8%;
+  transition: height 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 li:last-child {
@@ -156,8 +158,6 @@ li:last-child {
 li:last-child:hover {
   background-color: rgb(0, 255, 0);
   color: orange;
-  height: 8%;
-  transition: height 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .special {
@@ -183,9 +183,12 @@ li:last-child:hover {
     height: 25%;
   }
 
+  li:hover {
+    height: 25%;
+  }
+
   li:last-child:hover {
     background-color: rgb(0, 255, 0);
-    height: 25%;
     color: orange;
   }
 
@@ -228,6 +231,11 @@ form {
   border-radius: 10px;
   padding: 10px;
   margin-top: 10px;
+  margin-right: 10px;
+}
+
+.button:last-child {
+  margin: 0;
 }
 
 .button:hover {
