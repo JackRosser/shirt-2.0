@@ -87,12 +87,13 @@ main {
   position: relative;
 }
 
-img {
+.main_shirt {
   background-color: red;
   height: 100%;
   border: 2px solid gray;
   border-radius: 20px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
 /* maglietta su iphone */
@@ -103,7 +104,7 @@ img {
     flex-direction: column-reverse;
   }
 
-  img {
+  .main_shirt {
     width: 100%;
     height: auto;
     border-radius: 0;
@@ -198,6 +199,20 @@ li:last-child:hover {
   display: none;
 }
 
+/* zona del panel che si apre al menu */
+
+.panel {
+  background-color: gray;
+  padding: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .panel {
+    background-color: gray;
+    padding: 10px;
+  }
+}
+
 /* Zona di modifica del colore */
 
 form {
@@ -270,11 +285,11 @@ textarea:focus {
 /* Area del file */
 
 p {
-  margin-bottom: 10px;
+  margin: 10px;
   font-style: oblique;
   width: 70%;
   text-align: center;
-  color: gray;
+  color: rgb(230, 230, 230);
 }
 
 @media only screen and (max-width: 767px) {
@@ -289,11 +304,36 @@ p {
   position: absolute;
   width: 48%;
   height: 68%;
-  border: 1px solid red;
   top: 16%;
   left: 25%;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+#insert-here {
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+#image_position {
+  position: absolute;
+  width: 100%;
+  z-index: 4;
+  /* Cambiare il z-index a 6 per posizionare l'immagine sopra il testo */
+  opacity: 1;
+  /* abbassare o diminuire l'opacity */
+}
+
+img {
+  border-radius: 0;
 }
