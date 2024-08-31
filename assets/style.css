@@ -82,9 +82,14 @@ main {
   padding-right: 5%;
 }
 
+#shirtbox {
+  height: 80%;
+  position: relative;
+}
+
 img {
   background-color: red;
-  height: 80%;
+  height: 100%;
   border: 2px solid gray;
   border-radius: 20px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
@@ -260,4 +265,35 @@ textarea:focus {
     width: 30px;
     height: 30px;
   }
+}
+
+/* Area del file */
+
+p {
+  margin-bottom: 10px;
+  font-style: oblique;
+  width: 70%;
+  text-align: center;
+  color: gray;
+}
+
+@media only screen and (max-width: 767px) {
+  p {
+    font-size: 12px;
+  }
+}
+
+/* zona di modifica della maglietta */
+
+#on_shirt {
+  position: absolute;
+  width: 48%;
+  height: 68%;
+  border: 1px solid red;
+  top: 16%;
+  left: 25%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
