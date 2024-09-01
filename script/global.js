@@ -636,7 +636,7 @@ imageButton.addEventListener("click", function () {
         let imgElement = document.querySelector(".uploaded-image");
 
         if (imgElement) {
-          shirtComplete.image[0] = file.value; // Registra il file nel tuo oggetto completo
+          shirtComplete.image[0] = event.target.files[0].name;
           shirtComplete.image[1] = rangeOpacity.value;
           shirtComplete.image[2] = rangeRadius.value;
           shirtComplete.image[3] = rangeDimension.value;
