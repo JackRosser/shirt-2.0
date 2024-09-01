@@ -9,7 +9,7 @@ let fontStyle = "";
 
 //  MAGLIETTA COMPLETA
 let shirtComplete = {
-  color: "",
+  color: "white",
   text: [text, font, fontColor, fontAlign, fontStyle]
   // image: [file, opacity, borders, dimension, up, left, down, right]
 };
@@ -304,6 +304,41 @@ textButton.addEventListener("click", function () {
       shirtComplete.text[2] = zoneModify.style.color;
     });
   });
+
+  align.addEventListener("click", function () {
+    let section = document.createElement("section");
+    let divContainer = document.createElement("div");
+    divContainer.className = "divcontainer";
+    let left = document.createElement("div");
+    left.innerHTML = `<i class="fas fa-align-left"></i>`;
+    left.className = "align_class";
+    let center = document.createElement("div");
+    center.innerHTML = `<i class="fas fa-align-center"></i>`;
+    center.className = "align_class";
+    let right = document.createElement("div");
+    right.innerHTML = `<i class="fas fa-align-right"></i>`;
+    right.className = "align_class";
+    let submitAlign = document.createElement("button");
+    submitAlign.className = "button";
+    submitAlign.innerText = "Conferma";
+    divContainer.append(left, center, right);
+    section.append(divContainer, submitAlign);
+    body.appendChild(section);
+    left.addEventListener("click", function () {
+      zoneModify.style.textAlign = "left";
+    });
+    center.addEventListener("click", function () {
+      zoneModify.style.textAlign = "center";
+    });
+    right.addEventListener("click", function () {
+      zoneModify.style.textAlign = "right";
+    });
+    submitAlign.addEventListener("click", function () {
+      shirtComplete.text[3] = zoneModify.style.textAlign;
+      section.remove();
+    });
+  });
+
   // qui finisce la parentesi del text button
 });
 
