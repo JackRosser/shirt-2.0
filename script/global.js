@@ -10,7 +10,7 @@ let printButton = document.querySelector(".li__print");
 
 // Funzione per aprire il sottomenu di colorButton __________________________________________________________________
 colorButton.addEventListener("click", function () {
-  let existingForm = document.querySelector("#shirt__text");
+  let existingForm = document.querySelector("#shirt__color");
   if (existingForm) {
     existingForm.remove();
     textButton.style.display = "";
@@ -20,7 +20,7 @@ colorButton.addEventListener("click", function () {
   }
 
   let form = document.createElement("form");
-  form.id = "shirt__text";
+  form.id = "shirt__color";
   form.className = "panel";
 
   let labelInputTypeColor = document.createElement("label");
@@ -51,10 +51,12 @@ colorButton.addEventListener("click", function () {
   if (form) {
     colorButton.addEventListener("mouseover", function () {
       colorButton.style.backgroundColor = "white";
+      colorButton.style.height = "5%";
     });
 
     colorButton.addEventListener("mouseout", function () {
       colorButton.style.backgroundColor = "rgb(55, 55, 55)";
+      colorButton.style.height = "5%";
     });
 
     // altri pulsanti nascosti
@@ -129,10 +131,12 @@ textButton.addEventListener("click", function () {
   if (form) {
     textButton.addEventListener("mouseover", function () {
       textButton.style.backgroundColor = "white";
+      textButton.style.height = "5%";
     });
 
     textButton.addEventListener("mouseout", function () {
       textButton.style.backgroundColor = "rgb(55, 55, 55)";
+      textButton.style.height = "5%";
     });
   }
   // altri pulsanti nascosti
@@ -247,10 +251,12 @@ imageButton.addEventListener("click", function () {
   if (form) {
     imageButton.addEventListener("mouseover", function () {
       imageButton.style.backgroundColor = "white";
+      imageButton.style.height = "5%";
     });
 
-    textButton.addEventListener("mouseout", function () {
+    imageButton.addEventListener("mouseout", function () {
       imageButton.style.backgroundColor = "rgb(55, 55, 55)";
+      imageButton.style.height = "5%";
     });
   }
   // altri pulsanti nascosti
@@ -258,3 +264,26 @@ imageButton.addEventListener("click", function () {
   textButton.style.display = "none";
   printButton.style.display = "none";
 });
+
+// con i pulsanti si torna alla dimensione originale
+
+let exist = function (id, button) {
+  button.addEventListener("click", function () {
+    if (!document.getElementById(id)) {
+      // Aggiunge gli eventi mouseover e mouseout solo se il form non esiste
+      button.addEventListener("mouseover", function () {
+        button.style.backgroundColor = "gray";
+        button.style.height = "8%";
+      });
+
+      button.addEventListener("mouseout", function () {
+        button.style.backgroundColor = "rgb(55, 55, 55)";
+        button.style.height = "5%";
+      });
+    }
+  });
+};
+
+exist("shirt__color", colorButton);
+exist("shirt__text", textButton);
+exist("shirt__image", imageButton);
