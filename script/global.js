@@ -8,11 +8,21 @@ let fontAlign = "";
 let fontStyle = "";
 let fontWeight = "";
 
+//image
+let file = "";
+let opacity = "";
+let borders = "";
+let dimension = "";
+let up = "";
+let left = "";
+let down = "";
+let right = "";
+
 //  MAGLIETTA COMPLETA
 let shirtComplete = {
   color: "white",
-  text: [text, font, fontColor, fontAlign, fontStyle, fontWeight]
-  // image: [file, opacity, borders, dimension, up, left, down, right]
+  text: [text, font, fontColor, fontAlign, fontStyle, fontWeight],
+  image: [file, opacity, borders, dimension, up, left, down, right]
 };
 
 //  Sezioni del menu
@@ -540,6 +550,36 @@ imageButton.addEventListener("click", function () {
         rangeDimension.addEventListener("input", function () {
           img.style.width = `${rangeDimension.value}%`;
         });
+        let posX = 0;
+        let posY = 0;
+
+        // Gestione movimento su
+        up.addEventListener("click", function (event) {
+          event.preventDefault(); // Previene il submit del form
+          posY -= 10; // Sposta l'immagine verso l'alto di 10px
+          img.style.top = `${posY}px`;
+        });
+
+        // Gestione movimento giù
+        down.addEventListener("click", function (event) {
+          event.preventDefault(); // Previene il submit del form
+          posY += 10; // Sposta l'immagine verso il basso di 10px
+          img.style.top = `${posY}px`;
+        });
+
+        // Gestione movimento sinistra
+        left.addEventListener("click", function (event) {
+          event.preventDefault(); // Previene il submit del form
+          posX -= 10; // Sposta l'immagine verso sinistra di 10px
+          img.style.left = `${posX}px`;
+        });
+
+        // Gestione movimento destra
+        right.addEventListener("click", function (event) {
+          event.preventDefault(); // Previene il submit del form
+          posX += 10; // Sposta l'immagine verso destra di 10px
+          img.style.left = `${posX}px`;
+        });
       };
 
       // Leggi il file come un URL di dati
@@ -550,6 +590,16 @@ imageButton.addEventListener("click", function () {
   // 🔴FINE GESTIONE IMMAGINE🔴
 
   //________________DA QUI INIZIA IL DIV DEI PULSANTI _______________________
+
+  let divSS = document.createElement("div");
+  divSS.className = "divcontainer";
+  let sopra = document.createElement("div");
+  sopra.innerText = "Sposta sopra";
+  sopra.className = "sposta";
+  let sotto = document.createElement("div");
+  sotto.innerText = "Sposta sotto";
+  sotto.className = "sposta";
+  divSS.append(sopra, sotto);
   let div = document.createElement("div");
 
   let submit = document.createElement("button");
@@ -565,7 +615,7 @@ imageButton.addEventListener("click", function () {
 
   div.append(submit, reset);
   joypad.append(up, left, down, right);
-  form.append(pFile, file, pOpacity, rangeOpacity, pRadius, rangeRadius, pDimension, rangeDimension, pPosition, joypad, div); //appendo nel FORM
+  form.append(pFile, file, pOpacity, rangeOpacity, pRadius, rangeRadius, pDimension, rangeDimension, pPosition, joypad, divSS, div); //appendo nel FORM
   ul.insertBefore(form, imageButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
   // Gestione hover per colorButton

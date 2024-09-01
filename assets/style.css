@@ -435,6 +435,7 @@ p {
   width: 100%;
   border-radius: 0;
   opacity: 1;
+  position: absolute;
 }
 
 img {
@@ -493,4 +494,22 @@ img {
 
 .line-through {
   text-decoration: line-through;
+}
+
+.sposta {
+  font-size: 1rem;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-inline: 2.5px;
+}
+
+.sposta:hover {
+  color: white;
+  background-color: rgb(55, 55, 55);
+  cursor: pointer;
 }
