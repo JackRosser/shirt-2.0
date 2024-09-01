@@ -1,11 +1,16 @@
 //VARIABILI PRINCIPALI CHE DEVONO CAMBIARE
 let shirtColor = document.querySelector(".main_shirt");
 shirtColor.style.backgroundColor = "white";
+let text = "";
+let font = "";
+let fontColor = "";
+let fontAlign = "";
+let fontStyle = "";
 
 //  MAGLIETTA COMPLETA
 let shirtComplete = {
-  // color: shirtColor.style.backgroundColor
-  // text: [text, font, fontColor, fontAlign, fontStyle],
+  color: "",
+  text: [text, font, fontColor, fontAlign, fontStyle]
   // image: [file, opacity, borders, dimension, up, left, down, right]
 };
 
@@ -13,6 +18,7 @@ let shirtComplete = {
 
 let ul = document.querySelector("ul");
 let li = document.querySelector("li");
+let body = document.querySelector("body");
 
 let colorButton = document.querySelector(".li__color");
 colorButton.classList.add("li-on-mobile-js");
@@ -188,6 +194,15 @@ textButton.addEventListener("click", function () {
   form.append(label, textArea, divIcons, div); //appendo nel FORM
   ul.insertBefore(form, textButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    shirtComplete.text[0] = zoneModify.innerText;
+    form.remove();
+    colorButton.style.display = "";
+    imageButton.style.display = "";
+    printButton.style.display = "";
+  });
+
   // Gestione hover per colorButton
   if (form) {
     textButton.addEventListener("mouseover", function () {
@@ -208,6 +223,66 @@ textButton.addEventListener("click", function () {
 
   textArea.addEventListener("input", function () {
     zoneModify.textContent = textArea.value;
+  });
+
+  font.addEventListener("click", function () {
+    let section = document.createElement("section");
+    let label = document.createElement("label");
+    label.htmlFor = "fontSelection";
+    label.innerText = "Scegli il font";
+    let select = document.createElement("select");
+    select.id = "fontSelection";
+    select.name = "Selezione font";
+    let roboto = document.createElement("option");
+    roboto.value = "Roboto";
+    roboto.innerText = "Roboto (default)";
+    let rockSalt = document.createElement("option");
+    rockSalt.value = "Rock Salt";
+    rockSalt.innerText = "Rock Salt";
+    let comicNeue = document.createElement("option");
+    comicNeue.value = "Comic Neue";
+    comicNeue.innerText = "Comic Neue";
+    let chewy = document.createElement("option");
+    chewy.value = "Chewy";
+    chewy.innerText = "Chewy";
+    let bangers = document.createElement("option");
+    bangers.value = "Bangers";
+    bangers.innerText = "Bangers";
+
+    let div = document.createElement("div");
+
+    let submitFont = document.createElement("button");
+    submitFont.className = "button";
+    submitFont.innerText = "Conferma";
+
+    div.append(submitFont);
+    select.append(roboto, rockSalt, comicNeue, chewy, bangers);
+    section.append(label, select, div);
+    body.appendChild(section);
+
+    submitFont.addEventListener("click", function () {
+      section.remove();
+      if (select.value === "Roboto") {
+        zoneModify.classList.add("roboto");
+        shirtComplete.text[1] = "Roboto";
+      }
+      if (select.value === "Rock Salt") {
+        zoneModify.classList.add("rock");
+        shirtComplete.text[1] = "Rock Salt";
+      }
+      if (select.value === "Comic Neue") {
+        zoneModify.classList.add("comic");
+        shirtComplete.text[1] = "Comic Neue";
+      }
+      if (select.value === "Chewy") {
+        zoneModify.classList.add("chewy");
+        shirtComplete.text[1] = "Chewy";
+      }
+      if (select.value === "Bangers") {
+        zoneModify.classList.add("bangers");
+        shirtComplete.text[1] = "Bangers";
+      }
+    });
   });
 });
 
