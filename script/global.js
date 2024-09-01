@@ -21,7 +21,30 @@ textButton.classList.add("li-on-mobile-js");
 let imageButton = document.querySelector(".li__image");
 imageButton.classList.add("li-on-mobile-js");
 
-//🔴 QUI INIZIA LA PARTE RELATIVA AL COLORE DELLA MAGLIETTA 🔴
+// con i pulsanti si torna alla dimensione originale
+
+let exist = function (id, button) {
+  button.addEventListener("click", function () {
+    if (!document.getElementById(id)) {
+      // Aggiunge gli eventi mouseover e mouseout solo se il form non esiste
+      button.addEventListener("mouseover", function () {
+        button.style.backgroundColor = "gray";
+        // button.style.height = "8%";
+      });
+
+      button.addEventListener("mouseout", function () {
+        button.style.backgroundColor = "rgb(55, 55, 55)";
+        // button.style.height = "5%";
+      });
+    }
+  });
+};
+
+exist("shirt__color", colorButton);
+exist("shirt__text", textButton);
+exist("shirt__image", imageButton);
+
+//🔴 QUI INIZIA LA PARTE RELATIVA AL COLORE 🔴
 // Funzione per aprire il sottomenu di colorButton __________________________________________________________________
 colorButton.addEventListener("click", function () {
   let existingForm = document.querySelector("#shirt__color");
@@ -85,12 +108,12 @@ colorButton.addEventListener("click", function () {
   // Gestione hover per colorButton
   if (form) {
     colorButton.addEventListener("mouseover", function () {
-      colorButton.style.backgroundColor = "white";
+      colorButton.style.backgroundColor = "gray"; // Colore di sfondo al passaggio del mouse
       colorButton.style.height = "5%";
     });
 
     colorButton.addEventListener("mouseout", function () {
-      colorButton.style.backgroundColor = "rgb(55, 55, 55)";
+      colorButton.style.backgroundColor = "rgb(55, 55, 55)"; // Colore di sfondo al di fuori del mouse
       colorButton.style.height = "5%";
     });
 
@@ -101,7 +124,7 @@ colorButton.addEventListener("click", function () {
   }
 });
 
-//🔴 QUI INIZIA LA PARTE RELATIVA AL TESTO DELLA MAGLIETTA 🔴
+//🔴 QUI INIZIA LA PARTE RELATIVA AL TESTO 🔴
 // vado a cercare se esiste il mio elemento, e nel caso lo rimuovo
 textButton.addEventListener("click", function () {
   let existingForm = document.querySelector("#shirt__text");
@@ -162,25 +185,26 @@ textButton.addEventListener("click", function () {
   form.append(label, textArea, divIcons, div); //appendo nel FORM
   ul.insertBefore(form, textButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
-  // Gestione hover per textbutton
+  // Gestione hover per colorButton
   if (form) {
     textButton.addEventListener("mouseover", function () {
-      textButton.style.backgroundColor = "white";
+      textButton.style.backgroundColor = "gray"; // Colore di sfondo al passaggio del mouse
       textButton.style.height = "5%";
     });
 
     textButton.addEventListener("mouseout", function () {
-      textButton.style.backgroundColor = "rgb(55, 55, 55)";
+      textButton.style.backgroundColor = "rgb(55, 55, 55)"; // Colore di sfondo al di fuori del mouse
       textButton.style.height = "5%";
     });
+
+    // altri pulsanti nascosti
+    colorButton.style.display = "none";
+    imageButton.style.display = "none";
+    printButton.style.display = "none";
   }
-  // altri pulsanti nascosti
-  colorButton.style.display = "none";
-  imageButton.style.display = "none";
-  printButton.style.display = "none";
 });
 
-// Funzione per aprire il sottomenu di imageButton __________________________________________________________________
+//🔴 QUI INIZIA LA PARTE RELATIVA AL'IMMAGINE 🔴
 // vado a cercare se esiste il mio elemento, e nel caso lo rimuovo
 imageButton.addEventListener("click", function () {
   let existingForm = document.querySelector("#shirt__image");
@@ -282,46 +306,24 @@ imageButton.addEventListener("click", function () {
   form.append(pFile, file, pOpacity, rangeOpacity, pRadius, rangeRadius, pDimension, rangeDimension, pPosition, joypad, div); //appendo nel FORM
   ul.insertBefore(form, imageButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
-  // Gestione hover per textbutton
+  // Gestione hover per colorButton
   if (form) {
     imageButton.addEventListener("mouseover", function () {
-      imageButton.style.backgroundColor = "white";
+      imageButton.style.backgroundColor = "gray"; // Colore di sfondo al passaggio del mouse
       imageButton.style.height = "5%";
     });
 
     imageButton.addEventListener("mouseout", function () {
-      imageButton.style.backgroundColor = "rgb(55, 55, 55)";
+      imageButton.style.backgroundColor = "rgb(55, 55, 55)"; // Colore di sfondo al di fuori del mouse
       imageButton.style.height = "5%";
     });
+
+    // altri pulsanti nascosti
+    textButton.style.display = "none";
+    colorButton.style.display = "none";
+    printButton.style.display = "none";
   }
-  // altri pulsanti nascosti
-  colorButton.style.display = "none";
-  textButton.style.display = "none";
-  printButton.style.display = "none";
 });
-
-// con i pulsanti si torna alla dimensione originale
-
-let exist = function (id, button) {
-  button.addEventListener("click", function () {
-    if (!document.getElementById(id)) {
-      // Aggiunge gli eventi mouseover e mouseout solo se il form non esiste
-      button.addEventListener("mouseover", function () {
-        button.style.backgroundColor = "gray";
-        button.style.height = "8%";
-      });
-
-      button.addEventListener("mouseout", function () {
-        button.style.backgroundColor = "rgb(55, 55, 55)";
-        button.style.height = "5%";
-      });
-    }
-  });
-};
-
-exist("shirt__color", colorButton);
-exist("shirt__text", textButton);
-exist("shirt__image", imageButton);
 
 // PULSANTE VERDE
 
