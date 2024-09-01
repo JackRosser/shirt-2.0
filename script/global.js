@@ -553,17 +553,24 @@ imageButton.addEventListener("click", function () {
 
       // Quando il file è stato letto completamente
       reader.onload = function (e) {
-        // Crea un nuovo elemento immagine
-        let img = document.createElement("img");
+        // Crea o sostituisce l'elemento immagine
+        let img = document.querySelector(".uploaded-image");
+        if (!img) {
+          img = document.createElement("img");
+          img.className = "uploaded-image";
+          imagePosition.appendChild(img);
+        }
         img.src = e.target.result;
-        img.className = "uploaded-image";
-        imagePosition.innerHTML = ""; // Pulizia dell'elemento precedente
-        imagePosition.appendChild(img);
 
         // Applica le modifiche all'immagine
         img.style.opacity = rangeOpacity.value;
         img.style.borderRadius = `${rangeRadius.value}%`;
         img.style.width = `${rangeDimension.value}%`;
+
+        // il testo deve stare sopra l'immagine
+        let textElement = document.querySelector("#insert-here");
+        textElement.style.zIndex = 5;
+        img.style.zIndex = 4;
 
         // opacità
         rangeOpacity.addEventListener("input", function () {

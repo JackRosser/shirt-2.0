@@ -409,7 +409,6 @@ p {
 #insert-here {
   width: 100%;
   height: 100%;
-  border: 1px solid red;
   position: relative;
   z-index: 3;
   white-space: pre-wrap; /* Mantiene i ritorni a capo e gli spazi */
