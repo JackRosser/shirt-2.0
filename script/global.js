@@ -17,12 +17,12 @@ let up = "";
 let left = "";
 let down = "";
 let right = "";
-
+let zIndex = 4;
 //  MAGLIETTA COMPLETA
 let shirtComplete = {
   color: "white",
   text: [text, font, fontColor, fontAlign, fontStyle, fontWeight],
-  image: [file, opacity, borders, dimension, up, left, down, right]
+  image: [file, opacity, borders, dimension, up, left, down, right, zIndex]
 };
 
 //  Sezioni del menu
@@ -512,6 +512,35 @@ imageButton.addEventListener("click", function () {
   down.className = "button";
   down.innerHTML = `<i class="fas fa-arrow-alt-circle-down"></i>`;
 
+  //________________DA QUI INIZIA IL DIV DEI PULSANTI _______________________
+
+  let divSS = document.createElement("div");
+  divSS.className = "divcontainer";
+  let sopra = document.createElement("div");
+  sopra.innerText = "Sposta sopra";
+  sopra.className = "sposta";
+  let sotto = document.createElement("div");
+  sotto.innerText = "Sposta sotto";
+  sotto.className = "sposta";
+  divSS.append(sopra, sotto);
+  let div = document.createElement("div");
+
+  let submit = document.createElement("button");
+  submit.type = "submit";
+  submit.className = "button";
+  submit.innerText = "Conferma";
+
+  let reset = document.createElement("input");
+  reset.id = "reset";
+  reset.type = "reset";
+  reset.className = "button";
+  reset.value = "Reset";
+
+  div.append(submit, reset);
+  joypad.append(up, left, down, right);
+  form.append(pFile, file, pOpacity, rangeOpacity, pRadius, rangeRadius, pDimension, rangeDimension, pPosition, joypad, divSS, div); //appendo nel FORM
+  ul.insertBefore(form, imageButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
+
   // aggiungo l'immagine con l'input
 
   file.addEventListener("change", function (event) {
@@ -555,68 +584,105 @@ imageButton.addEventListener("click", function () {
 
         // Gestione movimento su
         up.addEventListener("click", function (event) {
-          event.preventDefault(); // Previene il submit del form
+          event.preventDefault();
           posY -= 10; // Sposta l'immagine verso l'alto di 10px
           img.style.top = `${posY}px`;
         });
 
         // Gestione movimento giù
         down.addEventListener("click", function (event) {
-          event.preventDefault(); // Previene il submit del form
+          event.preventDefault();
           posY += 10; // Sposta l'immagine verso il basso di 10px
           img.style.top = `${posY}px`;
         });
 
         // Gestione movimento sinistra
         left.addEventListener("click", function (event) {
-          event.preventDefault(); // Previene il submit del form
+          event.preventDefault();
           posX -= 10; // Sposta l'immagine verso sinistra di 10px
           img.style.left = `${posX}px`;
         });
 
         // Gestione movimento destra
         right.addEventListener("click", function (event) {
-          event.preventDefault(); // Previene il submit del form
+          event.preventDefault();
           posX += 10; // Sposta l'immagine verso destra di 10px
           img.style.left = `${posX}px`;
         });
       };
 
+      sopra.addEventListener("click", function () {
+        img.style.zIndex = 6;
+      });
+
+      sotto.addEventListener("click", function () {
+        img.style.zIndex = 4;
+      });
+
       // Leggi il file come un URL di dati
       reader.readAsDataURL(file);
+      // Gestione submit
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Verifica se img è definito
+        let imgElement = document.querySelector(".uploaded-image");
+
+        if (imgElement) {
+          shirtComplete.image[0] = file.value; // Registra il file nel tuo oggetto completo
+          shirtComplete.image[1] = rangeOpacity.value;
+          shirtComplete.image[2] = rangeRadius.value;
+          shirtComplete.image[3] = rangeDimension.value;
+          shirtComplete.image[4] = imgElement.style.top;
+          shirtComplete.image[5] = imgElement.style.left;
+          shirtComplete.image[6] = imgElement.style.zIndex;
+        } else {
+          console.error("Immagine non trovata o non definita");
+        }
+
+        // Rimuovi il form dal DOM
+        form.remove();
+
+        // Ripristina la visualizzazione dei pulsanti
+        colorButton.style.display = "";
+        textButton.style.display = "";
+        printButton.style.display = "";
+      });
+
+      // Gestione reset
+      reset.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // Resetta i valori dei range
+        rangeOpacity.value = "1";
+        rangeRadius.value = "0";
+        rangeDimension.value = "100";
+        posX = 0;
+        posY = 0;
+
+        // Rimuove l'immagine caricata e resetta l'input file
+        let img = document.querySelector(".uploaded-image");
+        if (img) {
+          img.remove(); // Rimuove l'immagine dal DOM
+        }
+        file.value = ""; // Resetta il campo di input file
+
+        // Resetta gli altri stili relativi all'immagine
+        if (img) {
+          img.style.opacity = rangeOpacity.value;
+          img.style.borderRadius = `${rangeRadius.value}%`;
+          img.style.width = `${rangeDimension.value}%`;
+          img.style.top = `${posY}px`;
+          img.style.left = `${posX}px`;
+          img.style.zIndex = 4;
+        }
+      });
+      // QUI FINISCE LA ZONA DELL'IF
     }
+    // MANTENERSI SOPRA QUESTE PARENTESI
   });
 
   // 🔴FINE GESTIONE IMMAGINE🔴
-
-  //________________DA QUI INIZIA IL DIV DEI PULSANTI _______________________
-
-  let divSS = document.createElement("div");
-  divSS.className = "divcontainer";
-  let sopra = document.createElement("div");
-  sopra.innerText = "Sposta sopra";
-  sopra.className = "sposta";
-  let sotto = document.createElement("div");
-  sotto.innerText = "Sposta sotto";
-  sotto.className = "sposta";
-  divSS.append(sopra, sotto);
-  let div = document.createElement("div");
-
-  let submit = document.createElement("button");
-  submit.type = "submit";
-  submit.className = "button";
-  submit.innerText = "Conferma";
-
-  let reset = document.createElement("input");
-  reset.id = "reset";
-  reset.type = "reset";
-  reset.className = "button";
-  reset.value = "Reset";
-
-  div.append(submit, reset);
-  joypad.append(up, left, down, right);
-  form.append(pFile, file, pOpacity, rangeOpacity, pRadius, rangeRadius, pDimension, rangeDimension, pPosition, joypad, divSS, div); //appendo nel FORM
-  ul.insertBefore(form, imageButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
   // Gestione hover per colorButton
   if (form) {

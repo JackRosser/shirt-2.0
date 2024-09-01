@@ -411,7 +411,7 @@ p {
   height: 100%;
   border: 1px solid red;
   position: relative;
-  z-index: 5;
+  z-index: 3;
   white-space: pre-wrap; /* Mantiene i ritorni a capo e gli spazi */
   overflow-wrap: break-word; /* Va a capo in caso di parole lunghe */
   word-break: break-word; /* Assicura che le parole lunghe vadano a capo */
@@ -436,6 +436,8 @@ p {
   border-radius: 0;
   opacity: 1;
   position: absolute;
+  z-index: 4;
+  left: 0;
 }
 
 img {
