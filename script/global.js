@@ -22,7 +22,7 @@ let zIndex = 4;
 let shirtComplete = {
   color: "white",
   text: [text, font, fontColor, fontAlign, fontStyle, fontWeight],
-  image: [file, opacity, borders, dimension, up, left, down, right, zIndex]
+  image: [file, opacity, borders, dimension, up, left, down, right]
 };
 
 //  Sezioni del menu
@@ -538,7 +538,7 @@ imageButton.addEventListener("click", function () {
 
   div.append(submit, reset);
   joypad.append(up, left, down, right);
-  form.append(pFile, file, pOpacity, rangeOpacity, pRadius, rangeRadius, pDimension, rangeDimension, pPosition, joypad, divSS, div); //appendo nel FORM
+  form.append(pFile, file, pOpacity, rangeOpacity, pRadius, rangeRadius, pDimension, rangeDimension, pPosition, joypad, div); //appendo nel FORM
   ul.insertBefore(form, imageButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
   // aggiungo l'immagine con l'input
@@ -642,7 +642,6 @@ imageButton.addEventListener("click", function () {
           shirtComplete.image[3] = rangeDimension.value;
           shirtComplete.image[4] = imgElement.style.top;
           shirtComplete.image[5] = imgElement.style.left;
-          shirtComplete.image[6] = imgElement.style.zIndex;
         } else {
           console.error("Immagine non trovata o non definita");
         }
@@ -715,5 +714,39 @@ imageButton.addEventListener("click", function () {
 let printButton = document.querySelector(".li__print");
 printButton.classList.add("li-on-mobile-js");
 printButton.addEventListener("click", function () {
-  console.log(shirtComplete);
+  let box = document.createElement("form");
+  box.className = "end";
+  let boxText = document.createElement("p");
+  boxText.innerText = "La tua maglietta ha le seguenti caratteristiche:";
+  let divColor = document.createElement("div");
+  divColor.innerHTML = `<b style="color: black">Colore:</b> ${shirtComplete.color}`;
+  let divText = document.createElement("div");
+  divText.innerHTML = `<b style="color: black">Testo:</b> ${shirtComplete.text[0]}<br>
+    <b style="color: black">Font:</b> ${shirtComplete.text[1]}<br>
+    <b style="color: black">Colore:</b> ${shirtComplete.text[2]}<br>
+    <b style="color: black">Allineamento:</b> ${shirtComplete.text[3]}<br>
+    <b style="color: black">Decorazioni:</b> ${shirtComplete.text[4]}<br>
+    <b style="color: black">Stile:</b> ${shirtComplete.text[5]}<br>`;
+
+  let divImage = document.createElement("div");
+  divImage.innerHTML = `<b style="color: black">File:</b> ${shirtComplete.image[0]}<br>
+    <b style="color: black">Opacità:</b> ${shirtComplete.image[1]}<br>
+    <b style="color: black">Arrotondamento:</b> ${shirtComplete.image[2]}<br>
+    <b style="color: black">Dimensione:</b> ${shirtComplete.image[3]}<br>
+    <b style="color: black">Su:</b> ${shirtComplete.image[4]}<br>
+    <b style="color: black">Sinistra:</b> ${shirtComplete.image[5]}<br>
+    <b style="color: black">Giù:</b> ${shirtComplete.image[6]}<br>
+    <b style="color: black">Destra:</b> ${shirtComplete.image[7]}<br>`;
+  let ok = document.createElement("button");
+  ok.type = "submit";
+  ok.className = "button";
+  ok.innerText = "Conferma";
+  box.append(boxText, divColor, divText, divImage, ok);
+  body.appendChild(box);
 });
+
+// let shirtComplete = {
+//   color: "white",
+//   text: [text, font, fontColor, fontAlign, fontStyle, fontWeight],
+//   image: [file, opacity, borders, dimension, up, left, down, right]
+// };
