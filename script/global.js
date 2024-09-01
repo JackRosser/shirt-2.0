@@ -6,11 +6,12 @@ let font = "";
 let fontColor = "black";
 let fontAlign = "";
 let fontStyle = "";
+let fontWeight = "";
 
 //  MAGLIETTA COMPLETA
 let shirtComplete = {
   color: "white",
-  text: [text, font, fontColor, fontAlign, fontStyle]
+  text: [text, font, fontColor, fontAlign, fontStyle, fontWeight]
   // image: [file, opacity, borders, dimension, up, left, down, right]
 };
 
@@ -174,6 +175,9 @@ textButton.addEventListener("click", function () {
   style.className = "text_modify_button";
   style.id = "style";
   style.innerHTML = `<i class="fas fa-underline"></i>`;
+  let bold = document.createElement("div");
+  bold.innerHTML = `<i class="fas fa-bold"></i>`;
+  bold.className = "text_modify_button";
 
   //________________DA QUI INIZIA IL DIV DEI PULSANTI _______________________
   let div = document.createElement("div");
@@ -190,7 +194,7 @@ textButton.addEventListener("click", function () {
   reset.value = "Reset";
 
   div.append(submit, reset);
-  divIcons.append(font, tint, align, style);
+  divIcons.append(font, tint, align, style, bold);
   form.append(label, textArea, divIcons, div); //appendo nel FORM
   ul.insertBefore(form, textButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
@@ -338,7 +342,80 @@ textButton.addEventListener("click", function () {
       section.remove();
     });
   });
+  style.addEventListener("click", function () {
+    let section = document.createElement("section");
+    let divContainer = document.createElement("div");
+    divContainer.className = "divcontainer";
+    let none = document.createElement("div");
+    none.className = "align_class";
+    none.innerHTML = `<i class="fas fa-remove-format"></i>`;
+    let underScore = document.createElement("div");
+    underScore.innerHTML = `<i class="fas fa-underline"></i>`;
+    underScore.className = "align_class";
+    let barrato = document.createElement("div");
+    barrato.innerHTML = `<i class="far fa-minus-square"></i>`;
+    barrato.className = "align_class";
+    let submitStyle = document.createElement("button");
+    submitStyle.className = "button";
+    submitStyle.innerText = "Conferma";
+    divContainer.append(none, underScore, barrato);
+    section.append(divContainer, submitStyle);
+    body.appendChild(section);
+    none.addEventListener("click", function () {
+      zoneModify.style.textDecoration = "none";
+    });
+    underScore.addEventListener("click", function () {
+      zoneModify.style.textDecoration = "underline";
+    });
+    barrato.addEventListener("click", function () {
+      zoneModify.style.textDecoration = "line-through";
+    });
+    submitStyle.addEventListener("click", function () {
+      shirtComplete.text[4] = zoneModify.style.textDecoration;
+      section.remove();
+    });
+  });
 
+  bold.addEventListener("click", function () {
+    let section = document.createElement("section");
+    let divContainer = document.createElement("div");
+    divContainer.className = "divcontainer";
+    let normal = document.createElement("div");
+    normal.innerHTML = `<i class="fas fa-font"></i>`;
+    let bold = document.createElement("div");
+    bold.innerHTML = `<i class="fas fa-bold"></i>`;
+    let cursive = document.createElement("div");
+    cursive.innerHTML = `<i class="fas fa-italic"></i>`;
+    let submitBold = document.createElement("button");
+    submitBold.className = "button";
+    submitBold.innerText = "Conferma";
+    divContainer.append(normal, bold, cursive);
+    section.append(divContainer, submitBold);
+    body.append(section);
+
+    bold.addEventListener("click", function () {
+      zoneModify.style.fontWeight = "bold";
+    });
+    normal.addEventListener("click", function () {
+      zoneModify.style.fontStyle = "normal";
+      zoneModify.style.fontWeight = "normal";
+    });
+    cursive.addEventListener("click", function () {
+      zoneModify.style.fontStyle = "oblique";
+    });
+    submitBold.addEventListener("click", function () {
+      if (zoneModify.style.fontWeight === "bold" && zoneModify.style.fontStyle === "oblique") {
+        shirtComplete.text[5] = "bold, oblique";
+      } else if (zoneModify.style.fontWeight === "bold") {
+        shirtComplete.text[5] = "bold";
+      } else if (zoneModify.style.fontStyle === "oblique") {
+        shirtComplete.text[5] = "oblique";
+      } else {
+        shirtComplete.text[5] = "normal";
+      }
+      section.remove();
+    });
+  });
   // qui finisce la parentesi del text button
 });
 

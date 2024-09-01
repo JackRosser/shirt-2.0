@@ -417,6 +417,8 @@ p {
   word-break: break-word; /* Assicura che le parole lunghe vadano a capo */
   overflow: hidden;
   text-align: center; /* Impostazione predefinita, modificabile in center o right */
+  text-decoration: none;
+  font-style: normal;
 }
 
 #image_position {
