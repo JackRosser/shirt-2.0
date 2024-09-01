@@ -502,6 +502,53 @@ imageButton.addEventListener("click", function () {
   down.className = "button";
   down.innerHTML = `<i class="fas fa-arrow-alt-circle-down"></i>`;
 
+  // aggiungo l'immagine con l'input
+
+  file.addEventListener("change", function (event) {
+    let imagePosition = document.querySelector("#image_position");
+
+    // Verifica se c'è un file selezionato
+    if (event.target.files && event.target.files[0]) {
+      let file = event.target.files[0];
+      let reader = new FileReader();
+
+      // Quando il file è stato letto completamente
+      reader.onload = function (e) {
+        // Crea un nuovo elemento immagine
+        let img = document.createElement("img");
+        img.src = e.target.result;
+        img.className = "uploaded-image";
+        imagePosition.innerHTML = ""; // Pulizia dell'elemento precedente
+        imagePosition.appendChild(img);
+
+        // Applica le modifiche all'immagine
+        img.style.opacity = rangeOpacity.value;
+        img.style.borderRadius = `${rangeRadius.value}%`;
+        img.style.width = `${rangeDimension.value}%`;
+
+        // opacità
+        rangeOpacity.addEventListener("input", function () {
+          img.style.opacity = rangeOpacity.value;
+        });
+
+        // border radius
+        rangeRadius.addEventListener("input", function () {
+          img.style.borderRadius = `${rangeRadius.value}%`;
+        });
+
+        // dimensione
+        rangeDimension.addEventListener("input", function () {
+          img.style.width = `${rangeDimension.value}%`;
+        });
+      };
+
+      // Leggi il file come un URL di dati
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // 🔴FINE GESTIONE IMMAGINE🔴
+
   //________________DA QUI INIZIA IL DIV DEI PULSANTI _______________________
   let div = document.createElement("div");
 

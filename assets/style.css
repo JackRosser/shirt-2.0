@@ -423,11 +423,18 @@ p {
 
 #image_position {
   position: absolute;
+  top: 0;
   width: 100%;
   z-index: 4;
   /* Cambiare il z-index a 6 per posizionare l'immagine sopra il testo */
   opacity: 1;
   /* abbassare o diminuire l'opacity */
+}
+
+.uploaded-image {
+  width: 100%;
+  border-radius: 0;
+  opacity: 1;
 }
 
 img {
