@@ -352,3 +352,23 @@ p {
 img {
   border-radius: 0;
 }
+
+/* joypad */
+
+.joypad {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.joypad button {
+  margin-top: 0;
+  margin-right: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.joypad button:last-child {
+  margin-right: 0;
+}

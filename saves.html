@@ -36,15 +36,30 @@
 
 <!-- FORM DI MODIFICA DEL FILE -->
 
-<form id="shirt__text" class="panel">
+<form id="shirt__image" class="panel">
   <!-- Qui vengono messi gli input type -->
   <p>Carica la foto che preferisci, poi posizionala lungo la maglietta tenendo premuto.</p>
-  <label for="input__file"></label>
   <input type="file" name="input-file" id="input__file" />
   <p>Regola l'opacità dell'immagine</p>
-  <input type="range" id="opacity" name="opacity" min="0" max="1" step="0.01" value="1" />
+  <input type="range" id="opacity" name="opacity" min="0" max="1" step="0.01" value="0" />
   <p>Arrotonda i bordi</p>
-  <input type="range" id="borders" name="borders" min="0" max="1" step="0.01" value="1" />
+  <input type="range" id="borders" name="borders" min="0" max="1" step="0.01" value="0" />
+  <p>Cambia la dimensione</p>
+  <input type="range" id="dimension" name="dimension" min="0" max="100" step="0.01" value="100" />
+  <p>Posizionala sopra o sotto il testo</p>
+  <div class="posizione_box">
+    <button class="button" id="sopra">Sopra</button>
+    <button class="button" id="sotto">Sotto</button>
+  </div>
+  <p>Posiziona l'immagine lungo la maglietta</p>
+  <div class="joypad">
+    <button id="up" class="button"><i class="fas fa-arrow-alt-circle-up"></i></button>
+    <duv class="left-and-right">
+      <button id="right" class="button"><i class="fas fa-arrow-alt-circle-right"></i></button>
+      <button id="left" class="button"><i class="fas fa-arrow-alt-circle-left"></i></button>
+    </duv>
+    <button id="down" class="button"><i class="fas fa-arrow-alt-circle-down"></i></button>
+  </div>
   <!-- Qui viene messo il button di conferma -->
   <div>
     <label for="close"></label>
