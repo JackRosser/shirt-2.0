@@ -1,12 +1,25 @@
+//VARIABILI PRINCIPALI CHE DEVONO CAMBIARE
+let shirtColor = document.querySelector(".main_shirt");
+shirtColor.style.backgroundColor = "white";
+
+//  MAGLIETTA COMPLETA
+let shirtComplete = {
+  // color: shirtColor.style.backgroundColor
+  // text: [text, font, fontColor, fontAlign, fontStyle],
+  // image: [file, opacity, borders, dimension, up, left, down, right]
+};
+
 //  Sezioni del menu
 
 let ul = document.querySelector("ul");
 let li = document.querySelector("li");
 
 let colorButton = document.querySelector(".li__color");
+colorButton.classList.add("li-on-mobile-js");
 let textButton = document.querySelector(".li__font");
+textButton.classList.add("li-on-mobile-js");
 let imageButton = document.querySelector(".li__image");
-let printButton = document.querySelector(".li__print");
+imageButton.classList.add("li-on-mobile-js");
 
 //🔴 QUI INIZIA LA PARTE RELATIVA AL COLORE DELLA MAGLIETTA 🔴
 // Funzione per aprire il sottomenu di colorButton __________________________________________________________________
@@ -59,6 +72,16 @@ colorButton.addEventListener("click", function () {
     mainShirtColor.style.backgroundColor = "white"; // Resetta il colore della maglietta
     inputTypeColor.value = "#ffffff"; // Resetta il valore del colore
   });
+  //GESTIONE SUBMIT
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    shirtComplete.color = inputTypeColor.value;
+    form.remove();
+    textButton.style.display = "";
+    imageButton.style.display = "";
+    printButton.style.display = "";
+  });
+
   // Gestione hover per colorButton
   if (form) {
     colorButton.addEventListener("mouseover", function () {
@@ -78,7 +101,7 @@ colorButton.addEventListener("click", function () {
   }
 });
 
-// Funzione per aprire il sottomenu di textButton __________________________________________________________________
+//🔴 QUI INIZIA LA PARTE RELATIVA AL TESTO DELLA MAGLIETTA 🔴
 // vado a cercare se esiste il mio elemento, e nel caso lo rimuovo
 textButton.addEventListener("click", function () {
   let existingForm = document.querySelector("#shirt__text");
@@ -300,14 +323,10 @@ exist("shirt__color", colorButton);
 exist("shirt__text", textButton);
 exist("shirt__image", imageButton);
 
-// GESTIONE SUBMIT COLORE
+// PULSANTE VERDE
 
-shirtColor.style.backgroundColor = "white";
-let colorBox = document.getElementById("input__color");
-
-//  MAGLIETTA COMPLETA
-let shirtComplete = {
-  color: shirtColor,
-  text: [text, font, fontColor, fontAlign, fontStyle],
-  image: [file, opacity, borders, dimension, up, left, down, right]
-};
+let printButton = document.querySelector(".li__print");
+printButton.classList.add("li-on-mobile-js");
+printButton.addEventListener("click", function () {
+  console.log(shirtComplete);
+});

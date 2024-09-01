@@ -130,7 +130,7 @@ ul {
   }
 }
 
-li {
+.li-on-mobile-js {
   display: flex;
   width: 100%;
   height: 5%;
@@ -141,23 +141,27 @@ li {
   border-bottom: 1px solid gray;
 }
 
-li:hover {
+.li-on-mobile-js:hover {
   color: black;
   background-color: gray;
   height: 8%;
   transition: height 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-li:last-child {
+.li-on-mobile-js:last-child {
   background-color: orange;
   color: rgb(0, 255, 0);
   border: 0;
   border-radius: 0 0 10px 10px;
 }
 
-li:last-child:hover {
+.li-on-mobile-js:last-child:hover {
   background-color: rgb(0, 255, 0);
   color: orange;
+}
+
+.li-on-mobile-js {
+  height: 5%;
 }
 
 .special {
@@ -179,21 +183,21 @@ li:last-child:hover {
 /* Menu su iphone */
 
 @media only screen and (max-width: 767px) {
-  li {
-    height: 25%;
-  }
-
-  li:hover {
-    height: 25%;
-  }
-
-  li:last-child:hover {
-    background-color: rgb(0, 255, 0);
-    color: orange;
-  }
-
   .special {
     border: 0;
+  }
+
+  .li-on-mobile-js {
+    height: 25%;
+  }
+
+  .li-on-mobile-js:hover {
+    height: 25%;
+  }
+
+  .li-on-mobile-js:last-child:hover {
+    background-color: rgb(0, 255, 0);
+    color: orange;
   }
 }
 
