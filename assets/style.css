@@ -338,10 +338,15 @@ p {
   height: 100%;
   border: 1px solid red;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   z-index: 5;
+  white-space: pre-wrap; /* Mantiene i ritorni a capo e gli spazi */
+  overflow-wrap: break-word; /* Va a capo in caso di parole lunghe */
+  word-break: break-word; /* Assicura che le parole lunghe vadano a capo */
+  overflow: hidden;
+  text-align: center; /* Centra il testo orizzontalmente */
 }
 
 #image_position {

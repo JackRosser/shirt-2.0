@@ -21,6 +21,9 @@ textButton.classList.add("li-on-mobile-js");
 let imageButton = document.querySelector(".li__image");
 imageButton.classList.add("li-on-mobile-js");
 
+// ZONA IN cuI cOMPAIONO LE MODIFICHE ALLA MAGLIETTA
+let zoneModify = document.getElementById("insert-here");
+
 // con i pulsanti si torna alla dimensione originale
 
 let exist = function (id, button) {
@@ -144,7 +147,7 @@ textButton.addEventListener("click", function () {
   label.htmlFor = "input__text";
   let textArea = document.createElement("textarea");
   textArea.id = "input__text";
-  textArea.wrap = "hard";
+
   textArea.placeholder = "Scrivi qui il testo che desideri inserire nella maglietta...";
   let divIcons = document.createElement("div");
 
@@ -202,6 +205,10 @@ textButton.addEventListener("click", function () {
     imageButton.style.display = "none";
     printButton.style.display = "none";
   }
+
+  textArea.addEventListener("input", function () {
+    zoneModify.textContent = textArea.value;
+  });
 });
 
 //🔴 QUI INIZIA LA PARTE RELATIVA AL'IMMAGINE 🔴
