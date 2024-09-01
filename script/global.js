@@ -3,7 +3,7 @@ let shirtColor = document.querySelector(".main_shirt");
 shirtColor.style.backgroundColor = "white";
 let text = "";
 let font = "";
-let fontColor = "";
+let fontColor = "black";
 let fontAlign = "";
 let fontStyle = "";
 
@@ -251,6 +251,10 @@ textButton.addEventListener("click", function () {
 
     let div = document.createElement("div");
 
+    select.addEventListener("change", function () {
+      zoneModify.style.fontFamily = select.value;
+    });
+
     let submitFont = document.createElement("button");
     submitFont.className = "button";
     submitFont.innerText = "Conferma";
@@ -263,27 +267,44 @@ textButton.addEventListener("click", function () {
     submitFont.addEventListener("click", function () {
       section.remove();
       if (select.value === "Roboto") {
-        zoneModify.classList.add("roboto");
         shirtComplete.text[1] = "Roboto";
       }
       if (select.value === "Rock Salt") {
-        zoneModify.classList.add("rock");
         shirtComplete.text[1] = "Rock Salt";
       }
       if (select.value === "Comic Neue") {
-        zoneModify.classList.add("comic");
         shirtComplete.text[1] = "Comic Neue";
       }
       if (select.value === "Chewy") {
-        zoneModify.classList.add("chewy");
         shirtComplete.text[1] = "Chewy";
       }
       if (select.value === "Bangers") {
-        zoneModify.classList.add("bangers");
         shirtComplete.text[1] = "Bangers";
       }
     });
   });
+  tint.addEventListener("click", function () {
+    let section = document.createElement("section");
+    let colorSection = document.createElement("input");
+    colorSection.type = "color";
+    colorSection.className = "input__color_panel ";
+    let div = document.createElement("div");
+    let submitColorPanel = document.createElement("button");
+    submitColorPanel.className = "button";
+    submitColorPanel.innerText = "Conferma";
+    div.appendChild(submitColorPanel);
+    section.append(colorSection, div);
+    body.appendChild(section);
+    colorSection.addEventListener("input", function () {
+      zoneModify.style.color = colorSection.value;
+    });
+
+    submitColorPanel.addEventListener("click", function () {
+      section.remove();
+      shirtComplete.text[2] = zoneModify.style.color;
+    });
+  });
+  // qui finisce la parentesi del text button
 });
 
 //🔴 QUI INIZIA LA PARTE RELATIVA AL'IMMAGINE 🔴
