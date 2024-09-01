@@ -188,16 +188,16 @@ ul {
   }
 
   .li-on-mobile-js {
-    height: 25%;
+    height: 25% !important;
   }
 
   .li-on-mobile-js:hover {
-    height: 25%;
+    height: 25% !important;
   }
 
   .li-on-mobile-js:last-child:hover {
-    background-color: rgb(0, 255, 0);
-    color: orange;
+    background-color: rgb(0, 255, 0) !important;
+    color: orange !important;
   }
 }
 
