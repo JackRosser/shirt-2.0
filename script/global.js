@@ -1,4 +1,4 @@
-// Sezioni del menu
+//  Sezioni del menu
 
 let ul = document.querySelector("ul");
 let li = document.querySelector("li");
@@ -8,6 +8,7 @@ let textButton = document.querySelector(".li__font");
 let imageButton = document.querySelector(".li__image");
 let printButton = document.querySelector(".li__print");
 
+//🔴 QUI INIZIA LA PARTE RELATIVA AL COLORE DELLA MAGLIETTA 🔴
 // Funzione per aprire il sottomenu di colorButton __________________________________________________________________
 colorButton.addEventListener("click", function () {
   let existingForm = document.querySelector("#shirt__color");
@@ -22,9 +23,6 @@ colorButton.addEventListener("click", function () {
   let form = document.createElement("form");
   form.id = "shirt__color";
   form.className = "panel";
-
-  let labelInputTypeColor = document.createElement("label");
-  labelInputTypeColor.htmlFor = "input__color";
 
   let inputTypeColor = document.createElement("input");
   inputTypeColor.id = "input__color";
@@ -44,9 +42,23 @@ colorButton.addEventListener("click", function () {
   reset.value = "Reset";
 
   div.append(submit, reset);
-  form.append(labelInputTypeColor, inputTypeColor, div);
+  form.append(inputTypeColor, div);
   ul.insertBefore(form, colorButton.nextElementSibling); // metto il form dentro ul subito dopo il li scelto
 
+  // cambio colore della maglietta
+
+  inputTypeColor.addEventListener("input", function () {
+    let mainShirtColor = document.querySelector(".main_shirt");
+    mainShirtColor.style.backgroundColor = inputTypeColor.value;
+  });
+
+  //RESET
+  reset.addEventListener("click", function (e) {
+    e.preventDefault(); // Previene il reset del form, se necessario
+    let mainShirtColor = document.querySelector(".main_shirt");
+    mainShirtColor.style.backgroundColor = "white"; // Resetta il colore della maglietta
+    inputTypeColor.value = "#ffffff"; // Resetta il valore del colore
+  });
   // Gestione hover per colorButton
   if (form) {
     colorButton.addEventListener("mouseover", function () {
@@ -287,3 +299,15 @@ let exist = function (id, button) {
 exist("shirt__color", colorButton);
 exist("shirt__text", textButton);
 exist("shirt__image", imageButton);
+
+// GESTIONE SUBMIT COLORE
+
+shirtColor.style.backgroundColor = "white";
+let colorBox = document.getElementById("input__color");
+
+//  MAGLIETTA COMPLETA
+let shirtComplete = {
+  color: shirtColor,
+  text: [text, font, fontColor, fontAlign, fontStyle],
+  image: [file, opacity, borders, dimension, up, left, down, right]
+};
